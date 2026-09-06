@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Operating Systems Reviewer</title>
+  <title>Pogramming Languages Lesson 3 Practice Reviewer</title>
   <style>
     * { box-sizing: border-box; }
     body {
@@ -87,14 +87,13 @@
     .btn-reset {
       background: none;
       border: 1px solid #d1d5db;
-      padding: 5px 12px;
+      padding: 4px 10px;
       border-radius: 6px;
-      font-size: 0.82rem;
-      color: #dc2626;
-      font-weight: 500;
+      font-size: 0.8rem;
+      color: #6b7280;
       cursor: pointer;
     }
-    .btn-reset:hover { background: #fef2f2; border-color: #f87171; }
+    .btn-reset:hover { background: #f3f4f6; color: #111827; }
 
     .section-title {
       font-size: 1.15rem;
@@ -124,7 +123,7 @@
       font-size: 0.95rem;
     }
 
-    /* Identification */
+    /* Identification Styles */
     .input-row {
       display: flex;
       gap: 8px;
@@ -173,7 +172,7 @@
     }
     button.btn-reveal:hover:not(:disabled) { background: #e5e7eb; }
 
-    /* Multiple Choice */
+    /* Multiple Choice Styles */
     .options-grid {
       display: grid;
       grid-gap: 8px;
@@ -208,7 +207,7 @@
 
     button:disabled, input:disabled {
       cursor: not-allowed;
-      opacity: 0.8;
+      opacity: 0.75;
     }
 
     .feedback {
@@ -231,7 +230,7 @@
 
 <div class="container">
   <header>
-    <h1>Operating Systems: Practice Reviewer</h1>
+    <h1>Pogramming Languages Lesson 3 Practice Reviewer</h1>
     <div class="subtitle" id="mode-hint">Type your answer, retry if needed, or reveal the answer.</div>
   </header>
 
@@ -241,11 +240,11 @@
         <button class="toggle-btn active" id="btn-mode-ident" onclick="switchMode('identification')">Identification (Fill-in)</button>
         <button class="toggle-btn" id="btn-mode-mcq" onclick="switchMode('mcq')">Multiple Choice</button>
       </div>
-      <button class="btn-reset" onclick="confirmReset()">Clear & Reset Quiz</button>
+      <button class="btn-reset" onclick="resetQuiz()">Reset Current Quiz</button>
     </div>
     <div class="stats-row">
-      <span id="score">Score: 0 / 110</span>
-      <span id="progress">Progress: 0 / 110 completed</span>
+      <span id="score">Score: 0 / 50</span>
+      <span id="progress">Progress: 0 / 50 completed</span>
     </div>
   </div>
 
@@ -254,121 +253,405 @@
 
 <script>
 const quizData = [
-  // LESSON 1
-  { sec: 'Lesson 1: Computer System Architecture & Hardware', q: "1. A set of hardware and software components that work together to accept input, process data, and produce output.", ans: "Computer System", alt: ["Computer Systems"] },
-  { sec: 'Lesson 1', q: "2. The functional layer made up of physical components that do the actual work.", ans: "Hardware" },
-  { sec: 'Lesson 1', q: "3. The functional layer that controls and coordinates hardware use and provides a stable platform for other software.", ans: "Operating System", alt: ["OS"] },
-  { sec: 'Lesson 1', q: "4. The functional layer made up of software that solves user problems.", ans: "Application Programs", alt: ["Application Software", "Applications", "Apps"] },
-  { sec: 'Lesson 1', q: "5. The functional layer consisting of people, machines, or other computers that issue requests.", ans: "Users", alt: ["User"] },
-  { sec: 'Lesson 1', q: "6. The component that executes instructions and contains the ALU, control unit, and registers.", ans: "CPU", alt: ["Central Processing Unit", "Processor"] },
-  { sec: 'Lesson 1', q: "7. Volatile storage that holds data and instructions the CPU is actively using.", ans: "Main Memory", alt: ["RAM", "Primary Memory", "Primary Storage", "Random Access Memory"] },
-  { sec: 'Lesson 1', q: "8. The set of pathways connecting the CPU, memory, and I/O devices.", ans: "System Bus", alt: ["Bus"] },
-  { sec: 'Lesson 1', q: "9. Small processors attached to each I/O device that manage that device's operation.", ans: "Device Controllers", alt: ["Device Controller", "Controller"] },
-  { sec: 'Lesson 1', q: "10. The organizational concept in which devices signal the CPU when they need service.", ans: "Interrupts", alt: ["Interrupt"] },
-  { sec: 'Lesson 1', q: "11. The method of constantly checking whether a device needs attention.", ans: "Polling", alt: ["Busy Waiting", "Poll"] },
-  { sec: 'Lesson 1', q: "12. The small routine the CPU jumps to in order to deal with an interrupt request.", ans: "Interrupt Handler", alt: ["Interrupt Service Routine", "ISR"] },
-  { sec: 'Lesson 1', q: "13. The architecture proposed by John von Neumann in 1945.", ans: "Von Neumann Architecture" },
-  { sec: 'Lesson 1', q: "14. The defining principle in which program instructions and data are stored together in the same memory.", ans: "Stored-Program Concept", alt: ["Stored Program", "Stored Program Concept"] },
-  { sec: 'Lesson 1', q: "15. The main part of a computer that controls how it works and handles instructions from programs.", ans: "CPU", alt: ["Central Processing Unit", "Processor"] },
-  { sec: 'Lesson 1', q: "16. The CPU component that sends control signals, controls data movement, and fetches instructions from memory.", ans: "Control Unit", alt: ["CU"] },
-  { sec: 'Lesson 1', q: "17. The CPU component that performs arithmetic operations, logical operations, comparisons, and bit shifting.", ans: "Arithmetic and Logic Unit", alt: ["ALU", "Arithmetic Logic Unit"] },
-  { sec: 'Lesson 1', q: "18. The fastest type of memory located inside the CPU.", ans: "Registers", alt: ["Register"] },
-  { sec: 'Lesson 1', q: "19. The register that keeps track of the address of the next instruction to be executed.", ans: "Program Counter", alt: ["PC", "Instruction Pointer", "IP"] },
-  { sec: 'Lesson 1', q: "20. The register that holds the current instruction being executed.", ans: "Instruction Register", alt: ["IR"] },
-  { sec: 'Lesson 1', q: "21. The register that stores the address of the memory location being accessed.", ans: "Memory Address Register", alt: ["MAR"] },
-  { sec: 'Lesson 1', q: "22. The register that temporarily holds data being transferred to or from memory.", ans: "Memory Data Register", alt: ["MDR", "Memory Buffer Register", "MBR"] },
-  { sec: 'Lesson 1', q: "23. The register that stores intermediate results of arithmetic and logic operations.", ans: "Accumulator", alt: ["AC", "ACC"] },
-  { sec: 'Lesson 1', q: "24. Registers used for temporary storage of data during processing.", ans: "General Purpose Registers", alt: ["GPR", "General-Purpose Registers", "General Purpose Register"] },
-  { sec: 'Lesson 1', q: "25. The communication system that transfers data, addresses, and control signals between the CPU, memory, and I/O devices.", ans: "Bus", alt: ["System Bus"] },
-  { sec: 'Lesson 1', q: "26. The component that connects the CPU and memory to input/output devices.", ans: "I/O Interface", alt: ["Input/Output Interface", "IO Interface", "I/O Interfaces"] },
-  { sec: 'Lesson 1', q: "27. The performance limitation created because instructions and data share the same bus and memory.", ans: "Von Neumann Bottleneck" },
-  { sec: 'Lesson 1', q: "28. The repeating computer-operation cycle made up of fetch, decode, execute, and store/update.", ans: "Fetch-Decode-Execute Cycle", alt: ["Instruction Cycle", "Machine Cycle", "Fetch Decode Execute Cycle"] },
-  { sec: 'Lesson 1', q: "29. The step in the cycle where the Control Unit retrieves the next instruction from memory.", ans: "Fetch" },
-  { sec: 'Lesson 1', q: "30. The step in the cycle where the instruction is translated into a form the ALU and other components understand.", ans: "Decode" },
-  { sec: 'Lesson 1', q: "31. The step in the cycle where the ALU or relevant component carries out the instruction.", ans: "Execute" },
-  { sec: 'Lesson 1', q: "32. The step in the cycle where results are written back and the Program Counter is updated.", ans: "Store/Update", alt: ["Store", "Update", "Writeback", "Write Back"] },
-  { sec: 'Lesson 1', q: "33. The OS operation model that uses interrupts and traps to regain control of the CPU.", ans: "Interrupt-Driven Operation", alt: ["Interrupt Driven Operation", "Interrupt Driven"] },
-  { sec: 'Lesson 1', q: "34. The operation model in which hardware supports a user mode and a kernel mode.", ans: "Dual-Mode Operation", alt: ["Dual Mode Operation", "Dual Mode"] },
-  { sec: 'Lesson 1', q: "35. The request ordinary programs must use to ask the OS to perform privileged operations.", ans: "System Call", alt: ["Syscall"] },
-
-  // LESSON 2
-  { sec: 'Lesson 2: Operating System Services, Interfaces & Structures', q: "36. The layer through which a user interacts with the operating system.", ans: "User Interface", alt: ["UI"] },
-  { sec: 'Lesson 2', q: "37. The text-based interface in which a user types commands such as Bash or PowerShell.", ans: "Command-Line Interface", alt: ["CLI", "Command Line Interface"] },
-  { sec: 'Lesson 2', q: "38. The visual interface that uses windows, icons, menus, and pointers.", ans: "Graphical User Interface", alt: ["GUI"] },
-  { sec: 'Lesson 2', q: "39. The model named by the initials for windows, icons, menus, and pointers.", ans: "WIMP Model", alt: ["WIMP"] },
-  { sec: 'Lesson 2', q: "40. The interface in which commands are submitted as jobs with no interactive session.", ans: "Batch Interface", alt: ["Batch"] },
-  { sec: 'Lesson 2', q: "41. The OS service that loads a program into memory and runs it.", ans: "Program Execution" },
-  { sec: 'Lesson 2', q: "42. The OS service that manages operations users cannot directly perform on hardware.", ans: "I/O Operations", alt: ["Input/Output Operations", "IO Operations"] },
-  { sec: 'Lesson 2', q: "43. The OS service for creating, deleting, reading, writing, and organizing files/directories.", ans: "File System Manipulation", alt: ["File Manipulation", "File-System Manipulation"] },
-  { sec: 'Lesson 2', q: "44. The OS service that lets processes exchange information on the same machine or over a network.", ans: "Communications", alt: ["Communication", "IPC"] },
-  { sec: 'Lesson 2', q: "45. The OS service that detects and handles errors in CPU, memory, I/O devices, or user programs.", ans: "Error Detection" },
-  { sec: 'Lesson 2', q: "46. The system-facing service that allocates CPU time, memory, storage, and I/O devices among users/jobs.", ans: "Resource Allocation" },
-  { sec: 'Lesson 2', q: "47. The service that tracks which users/programs use which resources for billing, optimization, or auditing.", ans: "Accounting" },
-  { sec: 'Lesson 2', q: "48. The service that controls access to resources, prevents process interference, and authenticates users.", ans: "Protection and Security", alt: ["Security and Protection"] },
-  { sec: 'Lesson 2', q: "49. The programming interface through which a running program requests a service from the OS kernel.", ans: "System Call", alt: ["Syscall"] },
-  { sec: 'Lesson 2', q: "50. The restricted mode where application code runs.", ans: "User Mode" },
-  { sec: 'Lesson 2', q: "51. The privileged mode where the operating system runs.", ans: "Kernel Mode", alt: ["Supervisor Mode", "System Mode"] },
-  { sec: 'Lesson 2', q: "52. The special CPU instruction that switches the CPU from user mode to kernel mode during a system call.", ans: "Trap", alt: ["Software Interrupt"] },
-  { sec: 'Lesson 2', q: "53. The number used by the OS to look up a requested service in the system call table.", ans: "System Call Number" },
-  { sec: 'Lesson 2', q: "54. One parameter-passing method that places parameters directly in CPU storage locations.", ans: "Registers", alt: ["Register"] },
-  { sec: 'Lesson 2', q: "55. One parameter-passing method that stores parameters in a block/table in memory and passes its address.", ans: "Block/Table in Memory", alt: ["Block in Memory", "Table in Memory", "Block or Table in Memory", "Memory Block"] },
-  { sec: 'Lesson 2', q: "56. One parameter-passing method that pushes parameters onto this data structure.", ans: "Stack" },
-  { sec: 'Lesson 2', q: "57. The system-call category used to create, terminate, and manage processes.", ans: "Process Control" },
-  { sec: 'Lesson 2', q: "58. The system-call category used to create, read, write, and delete files.", ans: "File Management" },
-  { sec: 'Lesson 2', q: "59. The system-call category used to request/release devices and perform read/write operations.", ans: "Device Management" },
-  { sec: 'Lesson 2', q: "60. The system-call category used to get or set system data.", ans: "Information Maintenance" },
-  { sec: 'Lesson 2', q: "61. The system-call category used for message passing and shared memory.", ans: "Communications", alt: ["Communication"] },
-  { sec: 'Lesson 2', q: "62. The system-call category used to control access to resources.", ans: "Protection" },
-  { sec: 'Lesson 2', q: "63. The part of OS design that describes how to do something or the machinery used.", ans: "Mechanism", alt: ["Mechanisms"] },
-  { sec: 'Lesson 2', q: "64. The part of OS design that decides what should be done.", ans: "Policy", alt: ["Policies"] },
-  { sec: 'Lesson 2', q: "65. The implementation consideration describing how easily an OS can be moved to new hardware.", ans: "Portability" },
-  { sec: 'Lesson 2', q: "66. The OS structure in which the entire OS runs as a single program in kernel mode.", ans: "Monolithic Structure", alt: ["Monolithic Kernel", "Monolithic"] },
-  { sec: 'Lesson 2', q: "67. The OS structure divided into layers where each layer uses services of the layer directly beneath it.", ans: "Layered Approach", alt: ["Layered Structure", "Layered"] },
-  { sec: 'Lesson 2', q: "68. The OS structure that keeps only basic IPC, minimal memory management, and minimal scheduling in the kernel.", ans: "Microkernel Structure", alt: ["Microkernel"] },
-  { sec: 'Lesson 2', q: "69. The approach that uses dynamically loadable kernel modules.", ans: "Modular Approach", alt: ["Loadable Kernel Modules", "LKM", "Modules"] },
-  { sec: 'Lesson 2', q: "70. The type of modern OS structure that mixes elements of several structural models.", ans: "Hybrid Systems", alt: ["Hybrid Structure", "Hybrid System"] },
-
-  // LESSON 3
-  { sec: 'Lesson 3: Processes, PCB, States & Multiprogramming', q: "71. A passive entity consisting of an executable file sitting on disk, with instructions and data.", ans: "Program" },
-  { sec: 'Lesson 3', q: "72. An active entity that is a program in execution, with its own state, registers, memory, and resources.", ans: "Process" },
-  { sec: 'Lesson 3', q: "73. The data structure the OS uses to represent and manage each process.", ans: "Process Control Block", alt: ["PCB"] },
-  { sec: 'Lesson 3', q: "74. Another name for the Process Control Block.", ans: "Task Control Block", alt: ["TCB"] },
-  { sec: 'Lesson 3', q: "75. The PCB field containing the current state such as new, ready, running, waiting, or terminated.", ans: "Process State" },
-  { sec: 'Lesson 3', q: "76. The unique identifier for a process.", ans: "Process ID", alt: ["PID", "Process Identifier"] },
-  { sec: 'Lesson 3', q: "77. The PCB field containing the address of the next instruction to execute.", ans: "Program Counter", alt: ["PC"] },
-  { sec: 'Lesson 3', q: "78. The PCB field containing a snapshot of register contents at the moment of interruption.", ans: "CPU Registers", alt: ["Registers"] },
-  { sec: 'Lesson 3', q: "79. The PCB field containing priority and pointers to scheduling queues.", ans: "CPU Scheduling Information", alt: ["Scheduling Information"] },
-  { sec: 'Lesson 3', q: "80. The PCB field containing base/limit registers, page tables, or segment tables.", ans: "Memory Management Information", alt: ["Memory-Management Information"] },
-  { sec: 'Lesson 3', q: "81. The PCB field containing CPU time used, time limits, and process number.", ans: "Accounting Information" },
-  { sec: 'Lesson 3', q: "82. The PCB field containing allocated I/O devices and open files.", ans: "I/O Status Information", alt: ["IO Status Information", "Input/Output Status Information"] },
-  { sec: 'Lesson 3', q: "83. The mechanism used to store and restore CPU state so a process can resume from the same point later.", ans: "Context Switching", alt: ["Context Switch"] },
-  { sec: 'Lesson 3', q: "84. The operation that occurs when the CPU switches from executing one process to another.", ans: "Context Switch", alt: ["Context Switching"] },
-  { sec: 'Lesson 3', q: "85. The kind of work context switching is considered because no useful process instruction is executed during the switch itself.", ans: "Pure Overhead", alt: ["Overhead"] },
-  { sec: 'Lesson 3', q: "86. The process state in which the process is being created.", ans: "New" },
-  { sec: 'Lesson 3', q: "87. The process state in which the process is loaded into memory and waiting to be assigned to the CPU.", ans: "Ready" },
-  { sec: 'Lesson 3', q: "88. The process state in which instructions are actively being executed by the CPU.", ans: "Running" },
-  { sec: 'Lesson 3', q: "89. The process state in which a process waits for an event such as I/O completion or a signal.", ans: "Waiting", alt: ["Blocked", "Waiting (Blocked)"] },
-  { sec: 'Lesson 3', q: "90. The process state in which the process has finished execution.", ans: "Terminated" },
-  { sec: 'Lesson 3', q: "91. The extension of the basic five-state model in which processes are temporarily removed from main memory or the active set.", ans: "Suspend States", alt: ["Suspended States", "Suspend State"] },
-  { sec: 'Lesson 3', q: "92. The suspended state of a process that was ready to run before being removed from main memory.", ans: "Suspend Ready State", alt: ["Suspend Ready", "Suspended Ready"] },
-  { sec: 'Lesson 3', q: "93. The suspended state of a process that was already waiting for an event before being moved out of main memory.", ans: "Suspend Wait State", alt: ["Suspend Wait", "Suspended Wait", "Suspend Blocked"] },
-  { sec: 'Lesson 3', q: "94. The transition that occurs when the OS finishes creating a process, allocates its PCB and memory, and admits it.", ans: "New to Ready", alt: ["New -> Ready", "Admit"] },
-  { sec: 'Lesson 3', q: "95. The transition that occurs when the scheduler/dispatcher selects a process to run on the CPU.", ans: "Ready to Running", alt: ["Ready -> Running", "Dispatch", "Schedule"] },
-  { sec: 'Lesson 3', q: "96. The transition that occurs when a running process requests I/O or must wait for an event/resource.", ans: "Running to Waiting", alt: ["Running -> Waiting"] },
-  { sec: 'Lesson 3', q: "97. The transition that occurs when an interrupt happens and the running process is paused but can still run.", ans: "Running to Ready", alt: ["Running -> Ready"] },
-  { sec: 'Lesson 3', q: "98. The transition that occurs when the event a waiting process needed has occurred.", ans: "Waiting to Ready", alt: ["Waiting -> Ready"] },
-  { sec: 'Lesson 3', q: "99. The transition that occurs when a process finishes execution or is aborted.", ans: "Running to Terminated", alt: ["Running -> Terminated", "Exit"] },
-  { sec: 'Lesson 3', q: "100. The type of process that spends most of its time doing computation and issues few I/O requests.", ans: "CPU-Bound Process", alt: ["CPU Bound Process", "CPU Bound"] },
-  { sec: 'Lesson 3', q: "101. The type of process that spends most of its time waiting for I/O and uses short CPU bursts.", ans: "I/O-Bound Process", alt: ["IO Bound Process", "IO-Bound Process", "I/O Bound"] },
-  { sec: 'Lesson 3', q: "102. The type of process that cannot affect or be affected by other processes and does not share data.", ans: "Independent Process", alt: ["Independent"] },
-  { sec: 'Lesson 3', q: "103. The type of process that can affect or be affected by other processes and shares data.", ans: "Cooperating Process", alt: ["Cooperating"] },
-  { sec: 'Lesson 3', q: "104. Processes that run in user mode and are initiated by user actions or user programs.", ans: "User Processes", alt: ["User Process"] },
-  { sec: 'Lesson 3', q: "105. Processes that run in the background, often start at boot, and provide system services.", ans: "System Processes", alt: ["Kernel Processes", "Daemons", "Services", "System/Kernel Processes"] },
-  { sec: 'Lesson 3', q: "106. The technique of keeping multiple processes in memory so the CPU can switch to another ready process when one waits.", ans: "Multiprogramming" },
-  { sec: 'Lesson 3', q: "107. The main reason multiprogramming matters, described as keeping the CPU from sitting idle.", ans: "CPU Utilization", alt: ["CPU Utilization / Efficiency"] },
-  { sec: 'Lesson 3', q: "108. An extension of multiprogramming in which the CPU switches frequently using time slices for responsiveness.", ans: "Multitasking", alt: ["Time-Sharing", "Time Sharing", "Multitasking (Time-Sharing)"] },
-  { sec: 'Lesson 3', q: "109. The number of processes in memory at once.", ans: "Degree of Multiprogramming" },
-  { sec: 'Lesson 3', q: "110. The collection from which the OS selects processes and loads a subset into memory.", ans: "Job Pool" }
+  {
+    "sec": "Process Address Space",
+    "q": "Which component manages the isolated Virtual Address Space of a process alongside OS Page Tables?",
+    "ans": "CPU MMU",
+    "alt": [
+      "MMU",
+      "Memory Management Unit"
+    ]
+  },
+  {
+    "sec": "Process Address Space",
+    "q": "What segment of the process address space stores machine code instructions?",
+    "ans": "Text Segment",
+    "alt": [
+      "Text"
+    ]
+  },
+  {
+    "sec": "Process Address Space",
+    "q": "Which memory segment contains initialized global variables?",
+    "ans": "Data Segment",
+    "alt": [
+      "Data"
+    ]
+  },
+  {
+    "sec": "Process Address Space",
+    "q": "Which memory segment contains uninitialized global variables?",
+    "ans": "BSS Segment",
+    "alt": [
+      "BSS"
+    ]
+  },
+  {
+    "sec": "Process Address Space",
+    "q": "In a process address space layout, which segment grows upwards toward higher memory addresses?",
+    "ans": "Heap Segment",
+    "alt": [
+      "Heap"
+    ]
+  },
+  {
+    "sec": "Process Address Space",
+    "q": "In a process address space layout, which segment grows downwards toward lower memory addresses?",
+    "ans": "Stack Segment",
+    "alt": [
+      "Stack"
+    ]
+  },
+  {
+    "sec": "Process Address Space",
+    "q": "What standard hexadecimal memory address is represented at the top (High Memory) of the process address space diagram?",
+    "ans": "0xFFFFFFFF",
+    "alt": []
+  },
+  {
+    "sec": "Process Address Space",
+    "q": "What standard hexadecimal memory address is represented at the bottom (Low Memory) of the process address space diagram?",
+    "ans": "0x00000000",
+    "alt": []
+  },
+  {
+    "sec": "Process Address Space",
+    "q": "Which two memory allocations in the address space are determined prior to execution as static allocations?",
+    "ans": "Code & Data Segments",
+    "alt": [
+      "Code and Data Segments",
+      "Text and Data Segments"
+    ]
+  },
+  {
+    "sec": "Stack Mechanics",
+    "q": "What is another term used to refer to a dedicated contiguous block of stack memory created automatically upon function invocation?",
+    "ans": "Activation Record",
+    "alt": [
+      "Stack Frame"
+    ]
+  },
+  {
+    "sec": "Stack Mechanics",
+    "q": "Which saved pointer inside an activation record holds the base address anchoring local variable offsets within the frame?",
+    "ans": "Frame Pointer",
+    "alt": [
+      "RBP",
+      "EBP",
+      "RBP/EBP"
+    ]
+  },
+  {
+    "sec": "Stack Mechanics",
+    "q": "Which saved pointer or hardware instruction pointer is saved in a stack frame to resume caller execution upon completion?",
+    "ans": "Return Address",
+    "alt": [
+      "RIP",
+      "EIP",
+      "RIP/EIP"
+    ]
+  },
+  {
+    "sec": "Stack Mechanics",
+    "q": "What assembly instruction subtracts bytes from the Stack Pointer to allocate memory on the stack?",
+    "ans": "sub rsp, N",
+    "alt": [
+      "sub rsp"
+    ]
+  },
+  {
+    "sec": "Stack Mechanics",
+    "q": "What assembly instruction adds bytes to the Stack Pointer to deallocate memory upon function return?",
+    "ans": "add rsp, N",
+    "alt": [
+      "add rsp"
+    ]
+  },
+  {
+    "sec": "Stack Mechanics",
+    "q": "Which data discipline or order does stack memory follow, preventing memory fragmentation completely?",
+    "ans": "Last-In, First-Out",
+    "alt": [
+      "LIFO"
+    ]
+  },
+  {
+    "sec": "Stack Mechanics",
+    "q": "What is the typical thread stack limit size mentioned for stack allocations?",
+    "ans": "1-8 MB",
+    "alt": [
+      "1 to 8 MB",
+      "1-8MB"
+    ]
+  },
+  {
+    "sec": "Heap Mechanics",
+    "q": "What type of data structures utilize heap memory allocations?",
+    "ans": "Dynamic Lifetimes",
+    "alt": [
+      "Dynamic data structures"
+    ]
+  },
+  {
+    "sec": "Heap Mechanics",
+    "q": "Which two functions are explicitly used for manual heap memory allocation and deallocation in the C language?",
+    "ans": "malloc()/free()",
+    "alt": [
+      "malloc and free",
+      "malloc/free"
+    ]
+  },
+  {
+    "sec": "Heap Mechanics",
+    "q": "Which operators are used for dynamic memory management in C++?",
+    "ans": "new/delete",
+    "alt": [
+      "new and delete"
+    ]
+  },
+  {
+    "sec": "Heap Mechanics",
+    "q": "What risk occurs on the heap when repeated allocations and frees create holes over prolonged runtimes?",
+    "ans": "External Fragmentation",
+    "alt": [
+      "Fragmentation",
+      "Fragmentation Risk"
+    ]
+  },
+  {
+    "sec": "Stack vs Heap Comparison",
+    "q": "What is the allocation speed characteristic of stack memory compared to heap memory?",
+    "ans": "Instant",
+    "alt": [
+      "Instant (Single SP pointer bump)",
+      "Single SP pointer bump"
+    ]
+  },
+  {
+    "sec": "Stack vs Heap Comparison",
+    "q": "What causes the allocation speed of heap memory to be slow?",
+    "ans": "Free-list search & syscalls",
+    "alt": [
+      "Free-list search and syscalls"
+    ]
+  },
+  {
+    "sec": "Stack vs Heap Comparison",
+    "q": "What is the scope lifetime of variables allocated on the stack?",
+    "ans": "Strictly Lexical / Local Scope",
+    "alt": [
+      "Strictly Lexical",
+      "Local Scope",
+      "Lexical Scope"
+    ]
+  },
+  {
+    "sec": "Stack vs Heap Comparison",
+    "q": "What bound limits the size of heap memory?",
+    "ans": "Physical RAM + Swap",
+    "alt": [
+      "Bound by physical RAM + Swap"
+    ]
+  },
+  {
+    "sec": "Stack vs Heap Comparison",
+    "q": "Why does stack memory achieve maximum cache locality performance?",
+    "ans": "Hot in CPU L1/L2 cache",
+    "alt": [
+      "It is hot in CPU L1/L2 cache"
+    ]
+  },
+  {
+    "sec": "Pointer Arithmetic",
+    "q": "If an integer pointer `int* ptr` at address `0x1000` is incremented by 1 (`ptr = ptr + 1`), what address does it evaluate to assuming `sizeof(int) = 4`?",
+    "ans": "0x1004",
+    "alt": []
+  },
+  {
+    "sec": "Pointer Arithmetic",
+    "q": "If a double pointer `double* d_ptr` at address `0x1000` is incremented by 1 (`d_ptr = d_ptr + 1`), what address does it evaluate to assuming `sizeof(double) = 8`?",
+    "ans": "0x1008",
+    "alt": []
+  },
+  {
+    "sec": "Pointer Arithmetic",
+    "q": "What abstract structure represents RAM in low-level pointer addressing?",
+    "ans": "Flat Byte Array",
+    "alt": [
+      "A Flat Byte Array"
+    ]
+  },
+  {
+    "sec": "Pointer Arithmetic",
+    "q": "What operator scales pointer arithmetic automatically by the element type size?",
+    "ans": "sizeof(T)",
+    "alt": [
+      "sizeof"
+    ]
+  },
+  {
+    "sec": "Pointer Arithmetic",
+    "q": "What operation (`*ptr`) directs the CPU to read or write N raw bytes from a target hex address?",
+    "ans": "Dereferencing",
+    "alt": [
+      "Dereference"
+    ]
+  },
+  {
+    "sec": "Struct Alignment",
+    "q": "How many bytes are wasted due to padding in the unoptimized `BadLayout` struct example?",
+    "ans": "10 bytes",
+    "alt": [
+      "10"
+    ]
+  },
+  {
+    "sec": "Struct Alignment",
+    "q": "What is the total byte size of the `OptimizedLayout` struct after proper field ordering?",
+    "ans": "16 bytes",
+    "alt": [
+      "16"
+    ]
+  },
+  {
+    "sec": "Struct Alignment",
+    "q": "According to the hardware alignment rule, primitive N-byte data types should reside at memory addresses divisible by what value?",
+    "ans": "N",
+    "alt": []
+  },
+  {
+    "sec": "Struct Alignment",
+    "q": "What do compilers insert between struct fields to enforce hardware memory alignment?",
+    "ans": "Padding bytes",
+    "alt": [
+      "Padding",
+      "Invisible padding bytes"
+    ]
+  },
+  {
+    "sec": "Struct Alignment",
+    "q": "What engineering rule should be applied when ordering struct fields to minimize padding waste?",
+    "ans": "Order struct fields from largest to smallest",
+    "alt": [
+      "Largest to smallest"
+    ]
+  },
+  {
+    "sec": "Cache Locality",
+    "q": "How many bytes form a standard CPU Cache Line fetched into L1/L2 cache?",
+    "ans": "64-byte",
+    "alt": [
+      "64 bytes",
+      "64"
+    ]
+  },
+  {
+    "sec": "Cache Locality",
+    "q": "Which type of memory access principle is utilized when sequentially accessing elements in a contiguous matrix array?",
+    "ans": "Spatial Locality",
+    "alt": [
+      "Spatial"
+    ]
+  },
+  {
+    "sec": "Cache Locality",
+    "q": "How much faster can contiguous sequential memory access run compared to pointer-chasing jumpy structures?",
+    "ans": "Up to 10x slower!",
+    "alt": [
+      "Up to 10x faster",
+      "10x faster",
+      "10x"
+    ]
+  },
+  {
+    "sec": "Cache Locality",
+    "q": "What causes matrix iteration using column-major ordering (`matrix[i][j]` inside an outer `j` loop) to be cache-hostile?",
+    "ans": "Stride-N jumps",
+    "alt": [
+      "Continuous cache misses",
+      "Stride-N jumps - Continuous cache misses"
+    ]
+  },
+  {
+    "sec": "Memory Bugs",
+    "q": "Which low-level memory bug is caused by unbounded recursion or massive local array allocations exhausting the stack space?",
+    "ans": "Stack Overflow",
+    "alt": []
+  },
+  {
+    "sec": "Memory Bugs",
+    "q": "Which security vulnerability occurs when writing past array bounds, corrupting adjacent stack variables or return addresses?",
+    "ans": "Buffer Overflow",
+    "alt": []
+  },
+  {
+    "sec": "Memory Bugs",
+    "q": "What bug occurs when dereferencing a pointer that points to heap memory that has already been deallocated?",
+    "ans": "Use-After-Free",
+    "alt": []
+  },
+  {
+    "sec": "Memory Bugs",
+    "q": "What memory condition happens when dynamic memory allocated on the heap is never deallocated with `free()`?",
+    "ans": "Memory Leak",
+    "alt": []
+  },
+  {
+    "sec": "Profiling & Diagnostics",
+    "q": "Which instrumentation tool sub-tool is used to catch memory leaks, invalid heap accesses, and uninitialized reads?",
+    "ans": "Valgrind (Memcheck)",
+    "alt": [
+      "Valgrind",
+      "Memcheck"
+    ]
+  },
+  {
+    "sec": "Profiling & Diagnostics",
+    "q": "What tool does GDB stand for?",
+    "ans": "GNU Debugger",
+    "alt": []
+  },
+  {
+    "sec": "Profiling & Diagnostics",
+    "q": "Which GDB command allows inspecting stack frame registers such as rsp and rbp?",
+    "ans": "info registers rsp rbp",
+    "alt": [
+      "info registers"
+    ]
+  },
+  {
+    "sec": "Profiling & Diagnostics",
+    "q": "Which GDB command format string is used to inspect raw hex memory words?",
+    "ans": "x/16xb",
+    "alt": [
+      "x/16xb"
+    ]
+  },
+  {
+    "sec": "Profiling & Diagnostics",
+    "q": "What fast compiler pass option flag is passed to enable AddressSanitizer (`ASan`)?",
+    "ans": "-fsanitize=address",
+    "alt": [
+      "-fsanitize=address"
+    ]
+  },
+  {
+    "sec": "Profiling & Diagnostics",
+    "q": "Which compiler feature detects buffer overflows and dangling pointers during runtime execution?",
+    "ans": "AddressSanitizer",
+    "alt": [
+      "ASan"
+    ]
+  },
+  {
+    "sec": "General Information",
+    "q": "Which course code and title is this runtime environment and memory layout lecture unit created for?",
+    "ans": "CSP 107: PROGRAMMING LANGUAGES",
+    "alt": [
+      "CSP 107",
+      "CSP 107 Programming Languages"
+    ]
+  }
 ];
 
 const allAnswers = [...new Set(quizData.map(d => d.ans))];
